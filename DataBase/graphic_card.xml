@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ArrayOfGameEngine xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<GraphicCard>
+		<IsSelected>false</IsSelected>
+		<ActiveUsersField>33000</ActiveUsersField>
+		<DescriptionField>Gigabyte GeForce RTX 4070 Ti EAGLE OC 12G is a powerful upper-midrange GPU with excellent 1440p and entry-level 4K gaming performance. Features triple-fan Windforce cooling and factory overclocking for better thermal and performance balance.
+		</DescriptionField>
+		<ImagePath>../Images/gtx4070ti.png</ImagePath>
+		<RtfFilePath>Rtx4070ti</RtfFilePath>
+		<DateAdded>2025-07-16T16:12:33.8497183+01:00</DateAdded>
+	</GraphicCard>
+	<GraphicCard>
+		<IsSelected>false</IsSelected>
+		<ActiveUsersField>23000</ActiveUsersField>
+		<DescriptionField>Gigabyte Radeon RX 7900 XTX GAMING OC 24G is Flagship AMD-based graphics card designed for 4K gaming with ray tracing capabilities. Comes with massive 24GB VRAM and reinforced cooling for demanding workloads and gaming.
+		</DescriptionField>
+		<ImagePath>../Images/rx7900.png</ImagePath>
+		<RtfFilePath>Rx7900</RtfFilePath>
+		<DateAdded>2025-07-16T16:13:20.8497183+01:00</DateAdded>
+	</GraphicCard>
+	<GraphicCard>
+		<IsSelected>false</IsSelected>
+		<ActiveUsersField>120000</ActiveUsersField>
+		<DescriptionField>Gigabyte GeForce GTX 1660 SUPER OC 6G is a budget-friendly yet reliable GPU ideal for 1080p gaming. Known for its great price-to-performance ratio and low power consumption, making it suitable for entry-level and casual gamers.
+		</DescriptionField>
+		<ImagePath>../Images/gtx1660.png</ImagePath>
+		<RtfFilePath>Gtx1660</RtfFilePath>
+		<DateAdded>2025-07-16T16:16:40.8497183+01:00</DateAdded>
+	</GraphicCard>
+</ArrayOfGameEngine>
