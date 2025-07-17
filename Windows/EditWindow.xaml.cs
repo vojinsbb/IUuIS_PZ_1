@@ -83,7 +83,6 @@ namespace CMS_gigabyte_graphic_card.Windows
                                             .ToList();
             fontSizeComboBox.ItemsSource = Enumerable.Range(1, 30).Select(i => (double)i).ToList();
 
-            //UpdateWordCount();
             this.DataContext = this;
         }
 
@@ -148,7 +147,6 @@ namespace CMS_gigabyte_graphic_card.Windows
 
             if (startFileName.Trim() == filePathRtf.Text.Trim())
             {
-                //string xmlFilePath = "../../DataBase/graphic_card.xml";
                 string xmlFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "graphic_card.xml");
 
                 if (File.Exists(xmlFilePath))
@@ -162,17 +160,6 @@ namespace CMS_gigabyte_graphic_card.Windows
                 else
                 {
                     GraphicCards = new ObservableCollection<GraphicCard>();
-                }
-
-                foreach (GraphicCard card in GraphicCards)
-                {
-                    if (card.RtfFilePath == filePathRtf.Text.Trim())
-                    {
-                        filePathRtf.BorderBrush = Brushes.Red;
-                        filePathRtfErrorLabel.Content = "File name already exists!";
-                        retVal = false;
-                        break;
-                    }
                 }
             }
 
