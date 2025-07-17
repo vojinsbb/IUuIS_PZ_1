@@ -43,7 +43,7 @@ namespace CMS_gigabyte_graphic_cards.Windows
                 {
                     _isAllSelected = value;
                     OnPropertyChanged(nameof(IsAllSelected));
-                    // Označi sve redove kao selektovane ili ne
+                    // oznaci sve redove kao selektovane ili ne
                     foreach (var card in GraphicCards)
                     {
                         card.IsSelected = _isAllSelected;
@@ -55,7 +55,6 @@ namespace CMS_gigabyte_graphic_cards.Windows
         public TableWindow(User user)
         {
             InitializeComponent();
-            //GraphicCards = new ObservableCollection<GraphicCard>();
             savedUser = user;
             if (user.Role == UserRole.Admin)
             {
@@ -80,9 +79,8 @@ namespace CMS_gigabyte_graphic_cards.Windows
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private void LoadGraphicCardsFromXml()
+        public void LoadGraphicCardsFromXml()
         {
-            //string xmlFilePath = "../../DataBase/game_engine.xml";
             string xmlFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "graphic_card.xml");
 
             if (File.Exists(xmlFilePath))
@@ -97,7 +95,15 @@ namespace CMS_gigabyte_graphic_cards.Windows
             {
                 GraphicCards = new ObservableCollection<GraphicCard>();
             }
+
+            GraphicCardDataGrid.ItemsSource = GraphicCards;
         }
+
+        public void RefreshGraphicCards()
+        {
+            LoadGraphicCardsFromXml();
+        }
+
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();

@@ -149,14 +149,16 @@
                         FontFamily="Calibri"
                         FontSize="18"
                         VerticalAlignment="Top"
-                        Margin="0 5 0 0"/>
+                        Margin="0 5 0 0"
+                        GotFocus="filePathRtf_GotFocus"
+                        LostFocus="filePathRtf_LostFocus"/>
                         <Label
                         Content=""
                         x:Name="filePathRtfErrorLabel"
                         Foreground="Red"
                         FontWeight="Bold"
                         FontFamily="Calibri"
-                        FontSize="10"/>
+                        FontSize="12"/>
                     </StackPanel>
                     <Label
                         Grid.Row="1"
@@ -301,24 +303,24 @@
                             Margin="0 0 10 0"/>
                         <StackPanel Orientation="Vertical">
                             <TextBox
-                            VerticalAlignment="Center"
-                            Width="260"
-                            Height="25"
-                            BorderBrush="Black"
-                            BorderThickness="2"
-                            x:Name="activeUsersTextBox"
-                            PreviewTextInput="activeUsersTextBox_PreviewTextInput"
-                            Padding="5"
-                            FontFamily="Calibri"
-                            FontSize="18"
-                            ToolTip="Enter number of active users"
-                                Margin="0 4 0 0"/>
+                                Width="260"
+                                Height="25"
+                                BorderBrush="Black"
+                                BorderThickness="2"
+                                x:Name="activeUsersTextBox"
+                                PreviewTextInput="activeUsersTextBox_PreviewTextInput"
+                                FontFamily="Calibri"
+                                FontSize="18"
+                                ToolTip="Enter number of active users"
+                                Margin="0 4 0 0"
+                                GotFocus="activeUsersTextBox_GotFocus"
+                                LostFocus="activeUsersTextBox_LostFocus"/>
                             <Label
                                 Content=""
                                 Foreground="Red"
                                 FontWeight="Bold"
                                 x:Name="activeUsersErrorLabel"
-                                VerticalAlignment="Bottom"/>
+                                FontSize="12"/>
                         </StackPanel>
                     </StackPanel>
 
@@ -445,13 +447,14 @@
                             </Image>
                         </Border>
                         <Label
-                            FontSize="8"
+                            FontSize="12"
                             FontFamily="Calibri"
                             FontWeight="Bold"
                             Margin="0 3 0 0"
                             Content=""
                             x:Name="selectedImageNameLabel"
-                            MaxWidth="120"/>
+                            MaxWidth="120"
+                            HorizontalAlignment="Center"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>

@@ -45,7 +45,7 @@ namespace CMS_gigabyte_graphic_card.Windows
             var bc = new BrushConverter();
             filePathRtf.Foreground = (Brush)bc.ConvertFrom("#717286");
 
-            activeUsersTextBox.Text = "Input number od users";
+            activeUsersTextBox.Text = "Input number of users";
             activeUsersTextBox.Foreground = (Brush)bc.ConvertFrom("#717286");
 
             fontFamilyComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
@@ -70,7 +70,7 @@ namespace CMS_gigabyte_graphic_card.Windows
 
         #endregion
 
-        #region PreviewTypeInput
+        #region PreviewTextInput
         private void filePathRtfTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             TextBox textBox = sender as TextBox;
@@ -310,6 +310,13 @@ namespace CMS_gigabyte_graphic_card.Windows
                 imagePreview.Source = null;
                 selectedImageNameLabel.Content = "";
                 MessageBox.Show("New Graphic Card successfully added!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                //TableWindow tableWindow = new TableWindow(savedUser);
+                //tableWindow.LoadGraphicCardsFromXml();
+                //tableWindow.Show();
+                //this.Close();
+                this.DialogResult = true;  // Signal da je uspešno dodato
+                this.Close();
             }
         }
 
@@ -330,8 +337,10 @@ namespace CMS_gigabyte_graphic_card.Windows
                 if (result == MessageBoxResult.Yes)
                 {
                     TableWindow tableWindow = new TableWindow(savedUser);
+                    tableWindow.RefreshGraphicCards();
                     tableWindow.Show();
                     this.Close();
+
                 }
             }
             
@@ -369,6 +378,51 @@ namespace CMS_gigabyte_graphic_card.Windows
             UpdateWordCount();
         }
 
+        #endregion
+
+        #region Got/Lost Focus
+
+        private void filePathRtf_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if(filePathRtf.Text.Trim().Equals("Input file name"))
+            {
+                filePathRtf.Text = "";
+                filePathRtf.Foreground = Brushes.Black;
+            }
+            filePathRtfErrorLabel.Content = "";
+            filePathRtf.BorderBrush = Brushes.Black;
+        }
+
+        private void filePathRtf_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (filePathRtf.Text.Trim().Equals(string.Empty))
+            {
+                filePathRtf.Text = "Input file name";
+                var bc = new BrushConverter();
+                filePathRtf.Foreground = (Brush)bc.ConvertFrom("#717286");
+            }
+        }
+
+        private void activeUsersTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if(activeUsersTextBox.Text.Trim().Equals("Input number of users"))
+            {
+                activeUsersTextBox.Text = "";
+                activeUsersTextBox.Foreground = Brushes.Black;
+            }
+            activeUsersErrorLabel.Content = "";
+            activeUsersTextBox.BorderBrush = Brushes.Black;
+        }
+
+        private void activeUsersTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (activeUsersTextBox.Text.Trim().Equals(string.Empty))
+            {
+                activeUsersTextBox.Text = "Input number of users";
+                var bc = new BrushConverter();
+                activeUsersTextBox.Foreground = (Brush)bc.ConvertFrom("#717286");
+            }
+        }
         #endregion
     }
 }
