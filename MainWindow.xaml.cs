@@ -29,6 +29,8 @@ namespace CMS_gigabyte_graphic_cards
     /// </summary>
     public partial class MainWindow : Window
     {
+        //Logovanje: admin admin123 ili guest guest123
+
         #region Initialization
 
         private const string usersFilePath = "../../DataBase/users.xml";

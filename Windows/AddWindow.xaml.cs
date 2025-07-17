@@ -251,7 +251,7 @@ namespace CMS_gigabyte_graphic_card.Windows
             if (Validation())
             {
                 string validName = filePathRtf.Text.Trim();
-                string xmlFilePath = "../../DataBase/graphic_card.xml";
+                string xmlFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "graphic_card.xml");
 
                 GraphicCard card = new GraphicCard(Convert.ToInt32(activeUsersTextBox.Text), new TextRange(editorRichTextBox.Document.ContentStart, editorRichTextBox.Document.ContentEnd).Text, savedImageName, validName);
 
@@ -343,20 +343,60 @@ namespace CMS_gigabyte_graphic_card.Windows
 
         private void addImageButton_Click(object sender, RoutedEventArgs e)
         {
+            //OpenFileDialog openFileDialog = new OpenFileDialog();
+            //openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.gif, *.svg) | *.jpg; *.jpeg; *.png; *.gif; *.svg";
+
+            //if (openFileDialog.ShowDialog() == true)
+            //{
+            //    string selectedImagePath = openFileDialog.FileName;
+            //    savedPath = selectedImagePath;
+            //    BitmapImage bitmapImage = new BitmapImage(new Uri(openFileDialog.FileName));
+            //    imagePreview.Source = bitmapImage;
+            //    string selectedImageName = Path.GetFileName(selectedImagePath);
+            //    selectedImageNameLabel.Content = selectedImageName;
+            //    savedImageName =  "../Images/" + selectedImageName;
+            //    selectedImageNameLabel.Foreground = Brushes.Black;
+            //    borderForImage.BorderBrush = Brushes.Black;
+            //}
+
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.gif, *.svg) | *.jpg; *.jpeg; *.png; *.gif; *.svg";
 
             if (openFileDialog.ShowDialog() == true)
             {
                 string selectedImagePath = openFileDialog.FileName;
-                savedPath = selectedImagePath;
-                BitmapImage bitmapImage = new BitmapImage(new Uri(openFileDialog.FileName));
-                imagePreview.Source = bitmapImage;
                 string selectedImageName = Path.GetFileName(selectedImagePath);
+
+                // odredi folder gde treba da se kopira slika
+                string destinationFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Images");
+                if (!Directory.Exists(destinationFolder))
+                {
+                    Directory.CreateDirectory(destinationFolder);
+                }
+
+                string destinationPath = Path.Combine(destinationFolder, selectedImageName);
+
+                // ako slika vec ne postoji u folderu kopiraj je
+                if (!File.Exists(destinationPath))
+                {
+                    File.Copy(selectedImagePath, destinationPath);
+                }
+
+                // postavi preview slike
+                BitmapImage bitmapImage = new BitmapImage();
+                bitmapImage.BeginInit();
+                bitmapImage.UriSource = new Uri(destinationPath, UriKind.Absolute);
+                bitmapImage.CacheOption = BitmapCacheOption.OnLoad;
+                bitmapImage.EndInit();
+                imagePreview.Source = bitmapImage;
+
+                // postavi labelu i zapamti relativnu putanju
                 selectedImageNameLabel.Content = selectedImageName;
-                savedImageName =  "../Images/" + selectedImageName;
                 selectedImageNameLabel.Foreground = Brushes.Black;
                 borderForImage.BorderBrush = Brushes.Black;
+
+                // Relativna putanja koju koristiš npr. u XML fajlu
+                savedImageName = "../Images/" + selectedImageName;
             }
         }
 
