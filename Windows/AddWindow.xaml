@@ -4,9 +4,457 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CMS_gigabyte_graphic_card.Windows"
+        xmlns:fa5 ="http://schemas.fontawesome.com/icons/"
+        xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
         mc:Ignorable="d"
-        Title="AddWindow" Height="450" Width="800">
+        Title="AddWindow" Height="550" Width="1000"
+        AllowsTransparency="True"
+        Background="Transparent"
+        WindowStyle="None"
+        MouseLeftButtonDown="Window_MouseLeftButtonDown"
+        WindowStartupLocation="CenterScreen">
     <Canvas>
-        
+        <Path
+            Stroke="Black"
+            Fill="DarkGray"
+            StrokeThickness="2">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="50,0" IsClosed="True">
+                        <ArcSegment Point="0,50" Size="50,50" SweepDirection="Counterclockwise"/>
+                        <LineSegment Point="0,350"/>
+                        <ArcSegment Point="50,400" Size="50,50" SweepDirection="Counterclockwise"/>
+                        <LineSegment Point="350,400"/>
+                        <ArcSegment Point="450,500" Size="100,100" SweepDirection="Clockwise"/>
+                        <LineSegment Point="950,500"/>
+                        <ArcSegment Point="1000,450" Size="50,50" SweepDirection="Counterclockwise"/>
+                        <LineSegment Point="1000,50"/>
+                        <ArcSegment Point="950,0" Size="50,50" SweepDirection="Counterclockwise"/>
+                        <LineSegment Point="500,0"/>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+
+        <!-- spoljasnji krug -->
+        <Ellipse 
+            Canvas.Left="50"
+            Canvas.Top="50"
+            Width="300"
+            Height="300"
+            Fill="Black"
+            Stroke="Black"
+            StrokeThickness="2"/>
+
+        <!-- sredisnji krug -->
+        <Ellipse 
+            Canvas.Left="170"
+            Canvas.Top="170"
+            Width="60"
+            Height="60"
+            Fill="gray"/>
+
+        <!-- lopatice -->
+        <Canvas 
+            RenderTransformOrigin="0.5,0.5"
+            Canvas.Left="200"
+            Canvas.Top="200">
+
+            <!-- originalna lopatica -->
+            <Path 
+                Fill="DarkSlateGray" 
+                Stroke="Black" 
+                StrokeThickness="1">
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="0,0" IsClosed="True">
+                            <!-- Bezier krivina do 130 duzine -->
+                            <BezierSegment Point1="110,-30" Point2="160,60" Point3="0,130"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+
+            <!-- druga lopatica(rotacija 120 stepeni) -->
+            <Path 
+                Fill="DarkSlateGray" 
+                Stroke="Black" 
+                StrokeThickness="1"
+                RenderTransformOrigin="0,0">
+                <Path.RenderTransform>
+                    <RotateTransform Angle="120"/>
+                </Path.RenderTransform>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="0,0" IsClosed="True">
+                            <BezierSegment Point1="110,-30" Point2="160,60" Point3="0,130"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+
+            <!-- treca lopatica(rotacija 240 stepeni) -->
+            <Path 
+                Fill="DarkSlateGray" 
+                Stroke="Black" 
+                StrokeThickness="1"
+                RenderTransformOrigin="0,0">
+                <Path.RenderTransform>
+                    <RotateTransform Angle="240"/>
+                </Path.RenderTransform>
+                <Path.Data>
+                    <PathGeometry>
+                        <PathFigure StartPoint="0,0" IsClosed="True">
+                            <BezierSegment Point1="110,-30" Point2="160,60" Point3="0,130"/>
+                        </PathFigure>
+                    </PathGeometry>
+                </Path.Data>
+            </Path>
+        </Canvas>
+
+        <StackPanel Width="1000" Height="500">
+            <StackPanel Margin="475 10 25 0" Height="475" Width="500" Orientation="Vertical">
+                <Grid Width="500" Height="475">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="3*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.6*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Content="Name:"
+                        FontFamily="Calibri"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        HorizontalAlignment="Right"
+                        Margin="0 0 10 23"
+                        VerticalAlignment="Center"/>
+                    <StackPanel 
+                        Grid.Row="0" 
+                        Grid.Column="1"
+                        Orientation="Vertical">
+                        <TextBox
+                        x:Name="filePathRtf"
+                        BorderBrush="Black"
+                        BorderThickness="2"
+                        Height="30"
+                        FontFamily="Calibri"
+                        FontSize="18"
+                        VerticalAlignment="Top"
+                        Margin="0 5 0 0"/>
+                        <Label
+                        Content=""
+                        x:Name="filePathRtfErrorLabel"
+                        Foreground="Red"
+                        FontWeight="Bold"
+                        FontFamily="Calibri"
+                        FontSize="10"/>
+                    </StackPanel>
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Content="Description:"
+                        VerticalAlignment="Bottom"
+                        FontFamily="Calibri"
+                        FontWeight="Bold"
+                        FontSize="18"
+                        Margin="0 0 10 15"
+                        HorizontalAlignment="Right"/>
+                    <DockPanel
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Grid.RowSpan="2"
+                        Margin="0 10 0 0">
+                        <ToolBar
+                            ToolTip="Toolbar for Description"
+                            Name="EditorToolBarTop"
+                            DockPanel.Dock="Top">
+                            <ComboBox
+                                Name="fontFamilyComboBox"
+                                Width="200"
+                                IsTextSearchCaseSensitive="False"
+                                IsTextSearchEnabled="False"
+                                SelectionChanged="fontFamilyComboBox_SelectionChanged"
+                                VerticalAlignment="Top"/>
+                            <Separator/>
+                            <ComboBox
+                                Name="fontSizeComboBox"
+                                Width="142"
+                                IsTextSearchCaseSensitive="False"
+                                IsTextSearchEnabled="True"
+                                SelectionChanged="fontSizeComboBox_SelectionChanged"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"/>
+                        </ToolBar>
+                        <ToolBar
+                            Name="EditorToolBarBottom"
+                            DockPanel.Dock="Top"
+                            ToolTip="ToolBar for description">
+                            <ToggleButton
+                                Name="boldButton"
+                                Command="EditingCommands.ToggleBold"
+                                ToolTip="Bold"
+                                VerticalAlignment="Top"
+                                Background="White">
+                                <fa5:SvgAwesome
+                                    Height="15"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="Black"
+                                    Icon="Solid_Bold"/>
+                            </ToggleButton>
+                            <ToggleButton
+                                Name="italicButton"
+                                Command="EditingCommands.ToggleItalic"
+                                ToolTip="Italic"
+                                VerticalAlignment="Top"
+                                Background="White">
+                                <fa5:SvgAwesome
+                                    Height="15"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="Black"
+                                    Icon="Solid_Italic"/>
+                            </ToggleButton>
+                            <ToggleButton
+                                Name="underlineButton"
+                                Command="EditingCommands.ToggleUnderline"
+                                ToolTip="Underline"
+                                VerticalAlignment="Top"
+                                Background="White">
+                                <fa5:SvgAwesome
+                                    Height="15"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Foreground="Black"
+                                    Icon="Solid_Underline"/>
+                            </ToggleButton>
+                            <Separator/>
+                            <ComboBox
+                                Name="colorComboBox"
+                                Width="200"
+                                IsTextSearchCaseSensitive="False"
+                                IsTextSearchEnabled="False"
+                                SelectionChanged="colorComboBox_SelectionChanged"
+                                VerticalAlignment="Top"
+                                FontFamily="Calibri">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Rectangle 
+                                                Width="16" 
+                                                Height="16" 
+                                                Margin="0,0,5,0">
+                                                <Rectangle.Fill>
+                                                    <SolidColorBrush Color="{Binding}"/>
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                            <TextBlock Text="{Binding}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </ToolBar>
+                        <StatusBar
+                            DockPanel.Dock="Bottom" 
+                            BorderBrush="Black" 
+                            BorderThickness="2 0 2 2" 
+                            ToolTip="StatusBar for description"
+                            FontFamily="Calibri">
+                            <StatusBarItem>
+                                <TextBlock
+                                    x:Name="wordCountTextBlock"
+                                    FontWeight="Bold"
+                                    FontSize="10"
+                                    FontFamily="Calibri"/>
+                            </StatusBarItem>
+                        </StatusBar>
+                        <RichTextBox
+                            BorderBrush="Black"
+                            BorderThickness="2"
+                            Name="editorRichTextBox"
+                            Padding="3"
+                            ToolTip="Add description"
+                            Margin="0 2 0 0"
+                            SelectionChanged="editorRichTextBox_SelectionChanged"
+                            TextChanged="editorRichTextBox_TextChanged"/>
+                    </DockPanel>
+
+                    <StackPanel
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Orientation="Horizontal">
+                        <Label
+                            Content="Active users:"
+                            FontFamily="Calibri"
+                            FontWeight="Bold"
+                            FontSize="18"
+                            VerticalAlignment="Top"
+                            Margin="0 0 10 0"/>
+                        <StackPanel Orientation="Vertical">
+                            <TextBox
+                            VerticalAlignment="Center"
+                            Width="260"
+                            Height="25"
+                            BorderBrush="Black"
+                            BorderThickness="2"
+                            x:Name="activeUsersTextBox"
+                            PreviewTextInput="activeUsersTextBox_PreviewTextInput"
+                            Padding="5"
+                            FontFamily="Calibri"
+                            FontSize="18"
+                            ToolTip="Enter number of active users"
+                                Margin="0 4 0 0"/>
+                            <Label
+                                Content=""
+                                Foreground="Red"
+                                FontWeight="Bold"
+                                x:Name="activeUsersErrorLabel"
+                                VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </StackPanel>
+
+                    <Button
+                        x:Name="saveButton"
+                        Click="saveButton_Click"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Width="160"
+                        Height="40"
+                        Margin="10 3 20 5"
+                        Background="PaleGoldenrod"
+                        BorderBrush="Orange"
+                        FontFamily="Calibri"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        ToolTip="Press to add new item"
+                        Cursor="Hand">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <fa5:SvgAwesome
+                            Icon="Solid_Save"
+                            Height="18"
+                            Width="18"
+                            VerticalAlignment="Center"
+                            Foreground="Black"/>
+                            <TextBlock
+                                Text="Save"
+                                VerticalAlignment="Center"
+                                Margin="5 0 0 0"/>
+                        </StackPanel>
+                    </Button>
+                    <Button
+                        x:Name="cancelButton"
+                        Click="cancelButton_Click"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Height="40"
+                        Width="160"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Right"
+                        Margin="5 5 20 10"
+                        Background="IndianRed"
+                        BorderBrush="Red"
+                        FontFamily="Calibri"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        ToolTip="Press to cancel"
+                        Cursor="Hand">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <fa5:SvgAwesome
+                                Icon="Solid_Times"
+                                Height="18"
+                                Width="18"
+                                VerticalAlignment="Center"
+                                Foreground="Black"/>
+                            <TextBlock
+                                Text="Cancel"
+                                VerticalAlignment="Center"
+                                Margin="0 3 0 5"/>
+                        </StackPanel>
+                    </Button>
+
+                    <Button
+                        x:Name="addImageButton"
+                        Click="addImageButton_Click"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Height="40"
+                        Width="160"
+                        FontFamily="Calibri"
+                        FontSize="18"
+                        FontWeight="Bold"
+                        Background="CornflowerBlue"
+                        BorderBrush="DarkBlue"
+                        Margin="20 0 0 5"
+                        ToolTip="Press to add image"
+                        Cursor="Hand">
+                        <StackPanel
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                            <fa5:SvgAwesome
+                                Icon="Solid_Image"
+                                Height="18"
+                                Width="18"
+                                VerticalAlignment="Center"
+                                Foreground="Black"/>
+                            <TextBlock
+                                Text="Add Image"
+                                VerticalAlignment="Center"
+                                Margin="5 0 0 0"/>
+                        </StackPanel>
+                    </Button>
+
+                    <StackPanel
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.RowSpan="2"
+                        VerticalAlignment="Center"
+                        Orientation="Vertical">
+                        <Border
+                            Grid.RowSpan="2"
+                            x:Name="borderForImage"
+                            BorderBrush="Black"
+                            BorderThickness="2"
+                            HorizontalAlignment="Center"
+                            Height="100"
+                            Width="100"
+                            ToolTip="Image border"
+                            Margin="0 0 0 0">
+                            <Image
+                                x:Name="imagePreview"
+                                Stretch="Fill">
+                            </Image>
+                        </Border>
+                        <Label
+                            FontSize="8"
+                            FontFamily="Calibri"
+                            FontWeight="Bold"
+                            Margin="0 3 0 0"
+                            Content=""
+                            x:Name="selectedImageNameLabel"
+                            MaxWidth="120"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </StackPanel>
     </Canvas>
 </Window>

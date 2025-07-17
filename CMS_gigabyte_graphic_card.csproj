@@ -131,8 +131,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DataBase\graphic_card.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\rtx3060.png" />
+    <Resource Include="Images\rtx4080aorus.png" />
+    <Resource Include="Images\rx6700xt.png" />
     <Content Include="Images\rx7900.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

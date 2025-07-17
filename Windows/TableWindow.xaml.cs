@@ -1,4 +1,5 @@
-﻿using CMS_gigabyte_graphic_cards.Models;
+﻿using CMS_gigabyte_graphic_card.Windows;
+using CMS_gigabyte_graphic_cards.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -135,9 +136,16 @@ namespace CMS_gigabyte_graphic_cards.Windows
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            //AddWindow addWindow = new AddWindow(savedUser);
-            //addWindow.Show();
-            //this.Close();
+            try
+            {
+                AddWindow addWindow = new AddWindow(savedUser);
+                addWindow.Show();
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Greška prilikom otvaranja AddWindow: " + ex.Message, "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void LogOutButton_Click(object sender, RoutedEventArgs e)
