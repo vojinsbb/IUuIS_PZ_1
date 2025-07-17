@@ -95,8 +95,6 @@ namespace CMS_gigabyte_graphic_cards.Windows
             {
                 GraphicCards = new ObservableCollection<GraphicCard>();
             }
-
-            GraphicCardDataGrid.ItemsSource = GraphicCards;
         }
 
         public void RefreshGraphicCards()
@@ -142,16 +140,9 @@ namespace CMS_gigabyte_graphic_cards.Windows
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                AddWindow addWindow = new AddWindow(savedUser);
-                addWindow.Show();
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Greška prilikom otvaranja AddWindow: " + ex.Message, "Greška", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            AddWindow addWindow = new AddWindow(savedUser);
+            addWindow.Show();
+            this.Close();
         }
 
         private void LogOutButton_Click(object sender, RoutedEventArgs e)

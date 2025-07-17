@@ -62,10 +62,7 @@ namespace CMS_gigabyte_graphic_card.Windows
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
-            {
-                this.DragMove();
-            }
+            this.DragMove();
         }
 
         #endregion
@@ -311,11 +308,9 @@ namespace CMS_gigabyte_graphic_card.Windows
                 selectedImageNameLabel.Content = "";
                 MessageBox.Show("New Graphic Card successfully added!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
 
-                //TableWindow tableWindow = new TableWindow(savedUser);
-                //tableWindow.LoadGraphicCardsFromXml();
-                //tableWindow.Show();
-                //this.Close();
-                this.DialogResult = true;  // Signal da je uspešno dodato
+                TableWindow tableWindow = new TableWindow(savedUser);
+                tableWindow.LoadGraphicCardsFromXml();
+                tableWindow.Show();
                 this.Close();
             }
         }
