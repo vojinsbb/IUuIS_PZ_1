@@ -10,7 +10,6 @@
         Title="AdminWindow" Height="550" Width="1000"
         AllowsTransparency="True"
         Background="Transparent"
-        SizeToContent="WidthAndHeight"
         WindowStyle="None"
         MouseLeftButtonDown="Window_MouseLeftButtonDown"
         WindowStartupLocation="CenterScreen"
@@ -104,7 +103,20 @@
         </Canvas>
 
         <StackPanel Width="1000" Height="500">
-            <StackPanel Margin="475 25 25 0" Height="450" Width="500" Orientation="Vertical">
+            <StackPanel Width="450" Height="50" Margin="405 0 0 0" Orientation="Horizontal">
+                <CheckBox
+                    x:Name="SelectAllCheckBox"
+                    Margin="0 0 0 0"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    Content="Select All"
+                    FontFamily="Calibri"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    IsChecked="{Binding IsAllSelected, Mode=TwoWay}"
+                    ToolTip="Select or deselect all items"/>
+            </StackPanel>
+            <StackPanel Margin="475 0 25 0" Height="450" Width="500" Orientation="Vertical">
                 <Grid Width="500" Height="450">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -135,7 +147,7 @@
                             <DataGridCheckBoxColumn 
                                 x:Name="SelectColumn" 
                                 Header="Select" 
-                                Binding="{Binding  IsSelected}"/>
+                                Binding="{Binding  IsSelected, Mode=TwoWay}"/>
                             <DataGridHyperlinkColumn 
                                 Header="Name" 
                                 Binding="{Binding  RtfFilePath}" 
@@ -144,6 +156,7 @@
                                     <Style 
                                         TargetType="TextBlock">
                                         <EventSetter 
+                                            Event="Hyperlink.Click"
                                             Handler="HyperLink_Click"/>
                                     </Style>
                                 </DataGridHyperlinkColumn.ElementStyle>
@@ -188,9 +201,8 @@
                         FontSize="18"
                         FontWeight="Bold"
                         Background="MediumAquamarine"
-                        BorderBrush="MediumAquamarine"
-                        Content="Add">
-                        <!--<StackPanel 
+                        BorderBrush="MediumAquamarine">
+                        <StackPanel 
                             Orientation="Horizontal" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center">
@@ -204,7 +216,7 @@
                                 VerticalAlignment="Center" 
                                 Foreground="Black" 
                                 Text="Add"/>
-                        </StackPanel>-->
+                        </StackPanel>
                     </Button>
 
                     <Button
@@ -223,9 +235,8 @@
                         Background="MediumPurple"
                         BorderBrush="Purple"
                         Cursor="Hand"
-                        Click="DeleteButton_Click"
-                        Content="Delete">
-                        <!--<StackPanel 
+                        Click="DeleteButton_Click">
+                        <StackPanel 
                             Orientation="Horizontal" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center">
@@ -239,7 +250,7 @@
                                 VerticalAlignment="Center" 
                                 Foreground="Black" 
                                 Text="Delete"/>
-                        </StackPanel>-->
+                        </StackPanel>
                     </Button>
                     <Button
                         x:Name="LogOutButton"
@@ -256,9 +267,8 @@
                         FontFamily="Calibri"
                         FontWeight="Bold"
                         FontSize="18"
-                        Cursor="Hand"
-                        Content="Log out">
-                        <!--<StackPanel 
+                        Cursor="Hand">
+                        <StackPanel 
                             Orientation="Horizontal" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Center">
@@ -272,7 +282,7 @@
                                 VerticalAlignment="Center" 
                                 Foreground="Black" 
                                 Text="Log out"/>
-                        </StackPanel>-->
+                        </StackPanel>
                     </Button>
                 </Grid>
             </StackPanel>

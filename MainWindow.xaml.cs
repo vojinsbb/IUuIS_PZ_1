@@ -31,7 +31,8 @@ namespace CMS_gigabyte_graphic_cards
     {
         #region Initialization
 
-        private string usersFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "users.xml");
+        private const string usersFilePath = "../../DataBase/users.xml";
+        //private string usersFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "users.xml");
         private List<User> users;
         private NotificationManager notificationManager;
         public MainWindow()
@@ -139,7 +140,7 @@ namespace CMS_gigabyte_graphic_cards
                 {
                     TableWindow tableWindow = new TableWindow(user);
                     tableWindow.Show();
-                    Close();
+                    this.Close();
                 }
                 else
                 {

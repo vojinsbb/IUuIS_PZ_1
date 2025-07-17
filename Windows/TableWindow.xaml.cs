@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -24,17 +25,36 @@ namespace CMS_gigabyte_graphic_cards.Windows
     /// <summary>
     /// Interaction logic for TableWindow.xaml
     /// </summary>
-    public partial class TableWindow : Window
+    public partial class TableWindow : Window, INotifyPropertyChanged
     {
         #region Initialization
 
         public ObservableCollection<GraphicCard> GraphicCards { get; set; }
         public User savedUser = new User();
-        private string xmlFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "graphic_card.xml");
+
+        private bool _isAllSelected;
+        public bool IsAllSelected
+        {
+            get => _isAllSelected;
+            set
+            {
+                if (_isAllSelected != value)
+                {
+                    _isAllSelected = value;
+                    OnPropertyChanged(nameof(IsAllSelected));
+                    // Označi sve redove kao selektovane ili ne
+                    foreach (var card in GraphicCards)
+                    {
+                        card.IsSelected = _isAllSelected;
+                    }
+                }
+            }
+        }
+
         public TableWindow(User user)
         {
             InitializeComponent();
-            GraphicCards = new ObservableCollection<GraphicCard>();
+            //GraphicCards = new ObservableCollection<GraphicCard>();
             savedUser = user;
             if (user.Role == UserRole.Admin)
             {
@@ -53,8 +73,17 @@ namespace CMS_gigabyte_graphic_cards.Windows
             LoadGraphicCardsFromXml();
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         private void LoadGraphicCardsFromXml()
         {
+            //string xmlFilePath = "../../DataBase/game_engine.xml";
+            string xmlFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "graphic_card.xml");
+
             if (File.Exists(xmlFilePath))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<GraphicCard>));
@@ -68,14 +97,13 @@ namespace CMS_gigabyte_graphic_cards.Windows
                 GraphicCards = new ObservableCollection<GraphicCard>();
             }
         }
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            GraphicCardDataGrid.Items.SortDescriptions.Add(new SortDescription("DateAdded", ListSortDirection.Descending));
-        }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            GraphicCardDataGrid.Items.SortDescriptions.Add(new SortDescription("DateAdded", ListSortDirection.Descending));
         }
 
         #endregion
@@ -97,7 +125,7 @@ namespace CMS_gigabyte_graphic_cards.Windows
                 {
                     //ViewWindow viewWindow = new ViewWindow(item, savedUser);
                     //viewWindow.Show();
-                    //tgis.Close();
+                    //this.Close();
                 }
             }
             else
