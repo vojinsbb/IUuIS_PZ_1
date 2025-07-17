@@ -43,10 +43,10 @@ namespace CMS_gigabyte_graphic_card.Windows
 
             filePathRtf.Text = "Input file name";
             var bc = new BrushConverter();
-            filePathRtf.Foreground = (Brush)bc.ConvertFrom("717286");
+            filePathRtf.Foreground = (Brush)bc.ConvertFrom("#717286");
 
             activeUsersTextBox.Text = "Input number od users";
-            activeUsersTextBox.Foreground = (Brush)bc.ConvertFrom("717286");
+            activeUsersTextBox.Foreground = (Brush)bc.ConvertFrom("#717286");
 
             fontFamilyComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             colorComboBox.ItemsSource = typeof(Colors).GetProperties()
