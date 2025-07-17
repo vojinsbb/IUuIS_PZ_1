@@ -29,6 +29,9 @@ namespace CMS_gigabyte_graphic_card.Windows
     /// </summary>
     public partial class AddWindow : Window
     {
+        //VAZNO: Ako dodajemo sliku bilo gde sa racunara ona ce se kopirati u folder Images u projektu
+        //ali se nece videti u TableWindow.xaml.cs u tabeli vec ce stojati prazno polje
+
         #region Initialization
 
         public string savedPath = "";
@@ -338,27 +341,10 @@ namespace CMS_gigabyte_graphic_card.Windows
 
                 }
             }
-            
         }
 
         private void addImageButton_Click(object sender, RoutedEventArgs e)
         {
-            //OpenFileDialog openFileDialog = new OpenFileDialog();
-            //openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.gif, *.svg) | *.jpg; *.jpeg; *.png; *.gif; *.svg";
-
-            //if (openFileDialog.ShowDialog() == true)
-            //{
-            //    string selectedImagePath = openFileDialog.FileName;
-            //    savedPath = selectedImagePath;
-            //    BitmapImage bitmapImage = new BitmapImage(new Uri(openFileDialog.FileName));
-            //    imagePreview.Source = bitmapImage;
-            //    string selectedImageName = Path.GetFileName(selectedImagePath);
-            //    selectedImageNameLabel.Content = selectedImageName;
-            //    savedImageName =  "../Images/" + selectedImageName;
-            //    selectedImageNameLabel.Foreground = Brushes.Black;
-            //    borderForImage.BorderBrush = Brushes.Black;
-            //}
-
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.gif, *.svg) | *.jpg; *.jpeg; *.png; *.gif; *.svg";
 

@@ -122,9 +122,9 @@ namespace CMS_gigabyte_graphic_cards.Windows
             {
                 if (savedUser.Role == UserRole.Admin)
                 {
-                    //EditWindow editWindow = new EditWindow(item, savedUser);
-                    //editWindow.Show();
-                    //this.Close();
+                    EditWindow editWindow = new EditWindow(item, savedUser);
+                    editWindow.Show();
+                    this.Close();
                 }
                 else
                 {

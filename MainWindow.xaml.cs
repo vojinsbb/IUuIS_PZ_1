@@ -29,7 +29,9 @@ namespace CMS_gigabyte_graphic_cards
     /// </summary>
     public partial class MainWindow : Window
     {
-        //Logovanje: admin admin123 ili guest guest123
+        //LOGOVANJE: admin admin123 ili guest guest123
+        //VAZNO: Ako dodajemo sliku bilo gde sa racunara ona ce se kopirati u folder Images u projektu
+        //ali se nece videti u TableWindow.xaml.cs u tabeli vec ce stojati prazno polje
 
         #region Initialization
 
