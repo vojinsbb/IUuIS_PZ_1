@@ -111,6 +111,12 @@ namespace CMS_gigabyte_graphic_cards.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GraphicCardDataGrid.Items.SortDescriptions.Add(new SortDescription("DateAdded", ListSortDirection.Descending));
+            XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<GraphicCard>));
+            using (FileStream fs = new FileStream("../../DataBase/graphic_card.xml", FileMode.Open))
+            {
+                GraphicCards = (ObservableCollection<GraphicCard>)serializer.Deserialize(fs);
+                GraphicCardDataGrid.ItemsSource = GraphicCards;
+            }
         }
 
         #endregion
@@ -184,7 +190,8 @@ namespace CMS_gigabyte_graphic_cards.Windows
                     {
                         if (card.IsSelected)
                         {
-                            string rtfFilePath = "../../RTF/" + card.RtfFilePath;
+                            //string rtfFilePath = "../../RTF/" + card.RtfFilePath;
+                            string rtfFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RTF", card.RtfFilePath + ".rtf");
                             if (!rtfFilePath.EndsWith(".rtf", StringComparison.OrdinalIgnoreCase))
                             {
                                 rtfFilePath += ".rtf";
