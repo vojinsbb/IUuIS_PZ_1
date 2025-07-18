@@ -2,11 +2,21 @@
 <ArrayOfGraphicCard xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <GraphicCard>
     <IsSelected>false</IsSelected>
+    <ActiveUsersField>33000</ActiveUsersField>
+    <DescriptionField>Gigabyte GeForce RTX 4070 Ti EAGLE OC 12G is a powerful upper-midrange GPU with excellent 1440p and entry-level 4K gaming performance. Features triple-fan Windforce cooling and factory overclocking for better thermal and performance balance.
+</DescriptionField>
+    <ImagePath>/Images/rtx4070ti.png</ImagePath>
+    <RtfFilePath>Rtx4070ti</RtfFilePath>
+    <DateAdded>2025-07-18T20:06:29.8629706+02:00</DateAdded>
+  </GraphicCard>
+  <GraphicCard>
+    <IsSelected>false</IsSelected>
     <ActiveUsersField>120000</ActiveUsersField>
-    <DescriptionField>Gigabyte GeForce GTX 1660 SUPER OC 6G is a budget-friendly yet reliable GPU ideal for 1080p gaming. Known for its great price-to-performance ratio and low power consumption, making it suitable for entry-level and casual gamers. </DescriptionField>
+    <DescriptionField>Gigabyte GeForce GTX 1660 SUPER OC 6G is a budget-friendly yet reliable GPU ideal for 1080p gaming. Known for its great price-to-performance ratio and low power consumption, making it suitable for entry-level and casual gamers.
+</DescriptionField>
     <ImagePath>/Images/gtx1660.png</ImagePath>
     <RtfFilePath>Gtx1660</RtfFilePath>
-    <DateAdded>2025-07-16T17:16:40.8497183+02:00</DateAdded>
+    <DateAdded>2025-07-18T20:06:06.1954874+02:00</DateAdded>
   </GraphicCard>
   <GraphicCard>
     <IsSelected>false</IsSelected>
@@ -15,13 +25,5 @@
     <ImagePath>/Images/rx7900.png</ImagePath>
     <RtfFilePath>Rx7900</RtfFilePath>
     <DateAdded>2025-07-16T17:13:20.8497183+02:00</DateAdded>
-  </GraphicCard>
-  <GraphicCard>
-    <IsSelected>false</IsSelected>
-    <ActiveUsersField>33000</ActiveUsersField>
-    <DescriptionField>Gigabyte GeForce RTX 4070 Ti EAGLE OC 12G is a powerful upper-midrange GPU with excellent 1440p and entry-level 4K gaming performance. Features triple-fan Windforce cooling and factory overclocking for better thermal and performance balance. </DescriptionField>
-    <ImagePath>/Images/rtx4070ti.png</ImagePath>
-    <RtfFilePath>Rtx4070ti</RtfFilePath>
-    <DateAdded>2025-07-16T17:12:33.8497183+02:00</DateAdded>
   </GraphicCard>
 </ArrayOfGraphicCard>

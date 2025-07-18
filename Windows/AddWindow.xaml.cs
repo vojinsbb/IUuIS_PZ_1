@@ -29,8 +29,9 @@ namespace CMS_gigabyte_graphic_card.Windows
     /// </summary>
     public partial class AddWindow : Window
     {
-        //VAZNO: Ako dodajemo sliku bilo gde sa racunara ona ce se kopirati u folder Images u projektu
-        //ali se nece videti u TableWindow.xaml.cs u tabeli vec ce stojati prazno polje
+        //VAZNO: 1. Ako dodajemo sliku direktno iz Images foldera ona ce se videti u tabeli
+        //       2. Ako se dodaje bilo gde sa racunara ona ce se kopirati u folder Images u projektu
+        //       ali se nece videti u TableWindow.xaml.cs u tabeli (sitna greska u kodu)
 
         #region Initialization
 

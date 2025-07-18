@@ -61,12 +61,14 @@ namespace CMS_gigabyte_graphic_cards.Windows
                 AddButton.Visibility = Visibility.Visible;
                 DeleteButton.Visibility = Visibility.Visible;
                 SelectColumn.Visibility = Visibility.Visible;
+                SelectAllCheckBox.Visibility = Visibility.Visible;
             }
             else
             {
                 AddButton.Visibility = Visibility.Hidden;
                 DeleteButton.Visibility = Visibility.Hidden;
                 SelectColumn.Visibility = Visibility.Hidden;
+                SelectAllCheckBox.Visibility = Visibility.Hidden;
             }
 
             DataContext = this;
@@ -128,9 +130,9 @@ namespace CMS_gigabyte_graphic_cards.Windows
                 }
                 else
                 {
-                    //ViewWindow viewWindow = new ViewWindow(item, savedUser);
-                    //viewWindow.Show();
-                    //this.Close();
+                    ViewWindow viewWindow = new ViewWindow(item, savedUser);
+                    viewWindow.Show();
+                    this.Close();
                 }
             }
             else

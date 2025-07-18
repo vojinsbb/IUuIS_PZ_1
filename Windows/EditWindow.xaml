@@ -14,9 +14,9 @@
         WindowStartupLocation="CenterScreen">
     <Canvas>
         <Path
-    Stroke="Black"
-    Fill="DarkGray"
-    StrokeThickness="2">
+            Stroke="Black"
+            Fill="DarkGray"
+            StrokeThickness="2">
             <Path.Data>
                 <PathGeometry>
                     <PathFigure StartPoint="50,0" IsClosed="True">
@@ -37,33 +37,33 @@
 
         <!-- spoljasnji krug -->
         <Ellipse 
-    Canvas.Left="50"
-    Canvas.Top="50"
-    Width="300"
-    Height="300"
-    Fill="Black"
-    Stroke="Black"
-    StrokeThickness="2"/>
+            Canvas.Left="50"
+            Canvas.Top="50"
+            Width="300"
+            Height="300"
+            Fill="Black"
+            Stroke="Black"
+            StrokeThickness="2"/>
 
         <!-- sredisnji krug -->
         <Ellipse 
-    Canvas.Left="170"
-    Canvas.Top="170"
-    Width="60"
-    Height="60"
-    Fill="gray"/>
+            Canvas.Left="170"
+            Canvas.Top="170"
+            Width="60"
+            Height="60"
+            Fill="gray"/>
 
         <!-- lopatice -->
         <Canvas 
-    RenderTransformOrigin="0.5,0.5"
-    Canvas.Left="200"
-    Canvas.Top="200">
+            RenderTransformOrigin="0.5,0.5"
+            Canvas.Left="200"
+            Canvas.Top="200">
 
             <!-- originalna lopatica -->
             <Path 
-        Fill="DarkSlateGray" 
-        Stroke="Black" 
-        StrokeThickness="1">
+                Fill="DarkSlateGray" 
+                Stroke="Black" 
+                StrokeThickness="1">
                 <Path.Data>
                     <PathGeometry>
                         <PathFigure StartPoint="0,0" IsClosed="True">
@@ -76,10 +76,10 @@
 
             <!-- druga lopatica(rotacija 120 stepeni) -->
             <Path 
-        Fill="DarkSlateGray" 
-        Stroke="Black" 
-        StrokeThickness="1"
-        RenderTransformOrigin="0,0">
+                Fill="DarkSlateGray" 
+                Stroke="Black" 
+                StrokeThickness="1"
+                RenderTransformOrigin="0,0">
                 <Path.RenderTransform>
                     <RotateTransform Angle="120"/>
                 </Path.RenderTransform>
@@ -94,10 +94,10 @@
 
             <!-- treca lopatica(rotacija 240 stepeni) -->
             <Path 
-        Fill="DarkSlateGray" 
-        Stroke="Black" 
-        StrokeThickness="1"
-        RenderTransformOrigin="0,0">
+                Fill="DarkSlateGray" 
+                Stroke="Black" 
+                StrokeThickness="1"
+                RenderTransformOrigin="0,0">
                 <Path.RenderTransform>
                     <RotateTransform Angle="240"/>
                 </Path.RenderTransform>
