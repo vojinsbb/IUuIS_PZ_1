@@ -30,8 +30,8 @@ namespace CMS_gigabyte_graphic_card.Windows
     public partial class AddWindow : Window
     {
         //VAZNO: 1. Ako dodajemo sliku direktno iz Images foldera ona ce se videti u tabeli
-        //       2. Ako se dodaje bilo gde sa racunara ona ce se kopirati u folder Images u projektu
-        //       ali se nece videti u TableWindow.xaml.cs u tabeli (sitna greska u kodu)
+        //       2. Ako se dodaje bilo gde sa racunara van fodler projekta ona ce se kopirati u folder
+        //       Images u projektu ali se nece videti u TableWindow.xaml.cs u tabeli (sitna greska u kodu)
 
         #region Initialization
 
@@ -250,6 +250,8 @@ namespace CMS_gigabyte_graphic_card.Windows
 
         #endregion
 
+        #region  Buttons
+
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             if (Validation())
@@ -354,7 +356,6 @@ namespace CMS_gigabyte_graphic_card.Windows
                 string selectedImagePath = openFileDialog.FileName;
                 string selectedImageName = Path.GetFileName(selectedImagePath);
 
-                // odredi folder gde treba da se kopira slika
                 string destinationFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Images");
                 if (!Directory.Exists(destinationFolder))
                 {
@@ -363,13 +364,11 @@ namespace CMS_gigabyte_graphic_card.Windows
 
                 string destinationPath = Path.Combine(destinationFolder, selectedImageName);
 
-                // ako slika vec ne postoji u folderu kopiraj je
                 if (!File.Exists(destinationPath))
                 {
                     File.Copy(selectedImagePath, destinationPath);
                 }
 
-                // postavi preview slike
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
                 bitmapImage.UriSource = new Uri(destinationPath, UriKind.Absolute);
@@ -377,15 +376,15 @@ namespace CMS_gigabyte_graphic_card.Windows
                 bitmapImage.EndInit();
                 imagePreview.Source = bitmapImage;
 
-                // postavi labelu i zapamti relativnu putanju
                 selectedImageNameLabel.Content = selectedImageName;
                 selectedImageNameLabel.Foreground = Brushes.Black;
                 borderForImage.BorderBrush = Brushes.Black;
 
-                // Relativna putanja koju koristiš npr. u XML fajlu
                 savedImageName = "../Images/" + selectedImageName;
             }
         }
+
+        #endregion
 
         #region Word count
         private void UpdateWordCount()

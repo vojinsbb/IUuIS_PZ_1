@@ -29,15 +29,18 @@ namespace CMS_gigabyte_graphic_cards
     /// </summary>
     public partial class MainWindow : Window
     {
-        //LOGOVANJE: admin admin123 ili guest guest123
-        //VAZNO ZA AddWindow: 1. Ako dodajemo sliku direktno iz Images foldera ona ce se videti u tabeli
-        //                    2. Ako se dodaje bilo gde sa racunara ona ce se kopirati u folder Images u projektu
-        //                    ali se nece videti u TableWindow.xaml.cs u tabeli (sitna greska u kodu)
+        //LOGOVANJE: admin admin123 | guest guest123
+        //VAZNO:              1. U zadatku su vecinski koriscene apsolutne putanje iako su trazene relativne(ima i njih na nekim mestima)
+        //                    zbog izbegavanja gresaka prilikom pokretanja projekta na razlicitim racunarima. Nadam se da nije problem.
+        //                    Negde su cak i ostavljene relativne putanje u komentaru iznad apsolutnih cisto da se vidi implementacija.
+        //      Za AddWindow: 2. Ako dodajemo sliku direktno iz Images foldera ona ce se videti u tabeli
+        //      Za AddWindow: 3. Ako se dodaje bilo gde sa racunara ona ce se kopirati u folder Images u projektu
+        //                    ali se nece videti u tabeli (sitna greska u kodu)
 
         #region Initialization
 
-        private const string usersFilePath = "../../DataBase/users.xml";
-        //private string usersFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "users.xml");
+        //private const string usersFilePath = "../../DataBase/users.xml";
+        private string usersFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "users.xml");
         private List<User> users;
         private NotificationManager notificationManager;
         public MainWindow()
@@ -132,6 +135,8 @@ namespace CMS_gigabyte_graphic_cards
 
         #endregion
 
+        #region Buttons
+
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = UsernameTextBox.Text;
@@ -146,6 +151,7 @@ namespace CMS_gigabyte_graphic_cards
                     TableWindow tableWindow = new TableWindow(user);
                     tableWindow.Show();
                     this.Close();
+                    mainWindow.SendToastNotification("Login successful", "Welcome to the CMS Gigabyte Graphic Cards!", NotificationType.Success);
                 }
                 else
                 {
@@ -170,5 +176,7 @@ namespace CMS_gigabyte_graphic_cards
                 this.Close();
             }
         }
+
+        #endregion
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CMS_gigabyte_graphic_card.Windows;
 using CMS_gigabyte_graphic_cards.Models;
+using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -31,7 +32,10 @@ namespace CMS_gigabyte_graphic_cards.Windows
         #region Initialization
 
         public ObservableCollection<GraphicCard> GraphicCards { get; set; }
+
         public User savedUser = new User();
+
+        private NotificationManager notificationManager = new NotificationManager();
 
         private bool _isAllSelected;
         public bool IsAllSelected
@@ -83,6 +87,7 @@ namespace CMS_gigabyte_graphic_cards.Windows
 
         public void LoadGraphicCardsFromXml()
         {
+            //string xmlFilePath = "../../DataBase/graphic_card.xml";
             string xmlFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "graphic_card.xml");
 
             if (File.Exists(xmlFilePath))
@@ -111,16 +116,24 @@ namespace CMS_gigabyte_graphic_cards.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GraphicCardDataGrid.Items.SortDescriptions.Add(new SortDescription("DateAdded", ListSortDirection.Descending));
-            XmlSerializer serializer = new XmlSerializer(typeof(ObservableCollection<GraphicCard>));
-            using (FileStream fs = new FileStream("../../DataBase/graphic_card.xml", FileMode.Open))
-            {
-                GraphicCards = (ObservableCollection<GraphicCard>)serializer.Deserialize(fs);
-                GraphicCardDataGrid.ItemsSource = GraphicCards;
-            }
         }
 
         #endregion
 
+        #region ToastNotifications
+        private void ShowToastNotification(ToastNotification toastNotification)
+        {
+            notificationManager.Show(toastNotification.Title, toastNotification.Message, toastNotification.Type, "WindowsNotificationArea");
+        }
+
+        private void SendToastNotification(string title, string message, NotificationType type)
+        {
+            ShowToastNotification(new ToastNotification(title, message, type));
+        }
+
+        #endregion
+
+        #region Buttons
         private void HyperLink_Click(object sender, RoutedEventArgs e)
         {
             var textBlock = (TextBlock)sender;
@@ -146,6 +159,7 @@ namespace CMS_gigabyte_graphic_cards.Windows
                 MessageBox.Show("Item not found.");
             }
         }
+
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             AddWindow addWindow = new AddWindow(savedUser);
@@ -179,7 +193,7 @@ namespace CMS_gigabyte_graphic_cards.Windows
 
             if (counter != 0)
             {
-                MessageBoxResult result = MessageBox.Show("Are you sre you want to remove these items?", "Delete items Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult result = MessageBox.Show("Are you sure you want to remove these items?", "Delete items Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -208,8 +222,9 @@ namespace CMS_gigabyte_graphic_cards.Windows
 
                     GraphicCardDataGrid.ItemsSource = remainingCards;
 
+                    string xmlFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "graphic_card.xml");
                     XmlSerializer serializer = new XmlSerializer(typeof(List<GraphicCard>));
-                    using (TextWriter tw = new StreamWriter("../../DataBase/graphic_card.xml"))
+                    using (TextWriter tw = new StreamWriter(xmlFilePath))
                     {
                         serializer.Serialize(tw, remainingCards);
                     }
@@ -222,5 +237,7 @@ namespace CMS_gigabyte_graphic_cards.Windows
                 MessageBox.Show("No item has been selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
+        #endregion
     }
 }

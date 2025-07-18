@@ -16,6 +16,11 @@
         Loaded="Window_Loaded">
 
     <Canvas>
+        <notifications:NotificationArea
+            x:Name="WindowsNotificationArea"
+            Panel.ZIndex="1000"
+            MaxItems="3"
+            Position="TopLeft"/>
         <Path
             Stroke="Black"
             Fill="DarkGray"

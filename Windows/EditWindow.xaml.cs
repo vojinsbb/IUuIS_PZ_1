@@ -168,6 +168,8 @@ namespace CMS_gigabyte_graphic_card.Windows
 
         #endregion
 
+        #region Buttons
+
         private void confirmButton_Click(object sender, RoutedEventArgs e)
         {
             if (Validation())
@@ -175,7 +177,7 @@ namespace CMS_gigabyte_graphic_card.Windows
                 string validName = filePathRtf.Text.Trim();
                 string xmlFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "DataBase", "graphic_card.xml");
 
-                #region Delete file from graphic_card.xml
+                #region Delete card from graphic_card.xml
 
                 List<GraphicCard> remainingCards = new List<GraphicCard>();
                 List<GraphicCard> cardsForCheck = new List<GraphicCard>();
@@ -289,8 +291,7 @@ namespace CMS_gigabyte_graphic_card.Windows
                 string selectedImagePath = openFileDialog.FileName;
                 string selectedImageName = Path.GetFileName(selectedImagePath);
 
-                // odredi folder gde treba da se kopira slika
-                string destinationFolder = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Images");
+                string destinationFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Images");
                 if (!Directory.Exists(destinationFolder))
                 {
                     Directory.CreateDirectory(destinationFolder);
@@ -298,13 +299,11 @@ namespace CMS_gigabyte_graphic_card.Windows
 
                 string destinationPath = Path.Combine(destinationFolder, selectedImageName);
 
-                // ako slika vec ne postoji u folderu kopiraj je
                 if (!File.Exists(destinationPath))
                 {
                     File.Copy(selectedImagePath, destinationPath);
                 }
 
-                // postavi preview slike
                 BitmapImage bitmapImage = new BitmapImage();
                 bitmapImage.BeginInit();
                 bitmapImage.UriSource = new Uri(destinationPath, UriKind.Absolute);
@@ -312,12 +311,10 @@ namespace CMS_gigabyte_graphic_card.Windows
                 bitmapImage.EndInit();
                 imagePreview.Source = bitmapImage;
 
-                // postavi labelu i zapamti relativnu putanju
                 selectedImageNameLabel.Content = selectedImageName;
                 selectedImageNameLabel.Foreground = Brushes.Black;
                 borderForImage.BorderBrush = Brushes.Black;
 
-                // Relativna putanja koju koristiš npr. u XML fajlu
                 savedImageName = "../Images/" + selectedImageName;
             }
         }
@@ -333,6 +330,8 @@ namespace CMS_gigabyte_graphic_card.Windows
                 this.Close();
             }
         }
+
+        #endregion
 
         #region SelectionChanged
 
