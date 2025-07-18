@@ -76,11 +76,14 @@ namespace CMS_gigabyte_graphic_card.Windows
 
         #endregion
 
+        #region Buttons
         private void backButton_Click(object sender, RoutedEventArgs e)
         {
             TableWindow tableWindow = new TableWindow(savedUser);
             tableWindow.Show();
             this.Close();
         }
+
+        #endregion
     }
 }

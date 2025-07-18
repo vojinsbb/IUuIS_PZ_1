@@ -204,8 +204,8 @@ namespace CMS_gigabyte_graphic_cards.Windows
                     {
                         if (card.IsSelected)
                         {
-                            //string rtfFilePath = "../../RTF/" + card.RtfFilePath;
-                            string rtfFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RTF", card.RtfFilePath + ".rtf");
+                            string rtfFilePath = "../../RTF/" + card.RtfFilePath;
+                            //string rtfFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RTF", card.RtfFilePath);
                             if (!rtfFilePath.EndsWith(".rtf", StringComparison.OrdinalIgnoreCase))
                             {
                                 rtfFilePath += ".rtf";

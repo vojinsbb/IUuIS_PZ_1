@@ -251,7 +251,8 @@ namespace CMS_gigabyte_graphic_card.Windows
                     }
                 }
 
-                string folderName = "../../RTF";
+                //string folderName = "../../RTF";
+                string folderName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "RTF");
                 string folderPath = Path.Combine(Environment.CurrentDirectory, folderName);
 
                 if (!Directory.Exists(folderPath))

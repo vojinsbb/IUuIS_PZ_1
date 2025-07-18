@@ -33,7 +33,7 @@ namespace CMS_gigabyte_graphic_cards
         //VAZNO:              1. U zadatku su vecinski koriscene apsolutne putanje iako su trazene relativne(ima i njih na nekim mestima)
         //                    zbog izbegavanja gresaka prilikom pokretanja projekta na razlicitim racunarima. Nadam se da nije problem.
         //                    Negde su cak i ostavljene relativne putanje u komentaru iznad apsolutnih cisto da se vidi implementacija.
-        //      Za AddWindow: 2. Ako dodajemo sliku direktno iz Images foldera ona ce se videti u tabeli
+        //      Za AddWindow: 2. Ako dodajemo sliku direktno iz Images foldera u projektu ona ce se videti u tabeli
         //      Za AddWindow: 3. Ako se dodaje bilo gde sa racunara ona ce se kopirati u folder Images u projektu
         //                    ali se nece videti u tabeli (sitna greska u kodu)
 
