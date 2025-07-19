@@ -120,6 +120,7 @@ namespace CMS_gigabyte_graphic_cards
 
             return retVal;
         }
+
         #endregion
 
         #region ToastNotifications
