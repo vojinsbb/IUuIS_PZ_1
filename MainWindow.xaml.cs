@@ -30,7 +30,7 @@ namespace CMS_gigabyte_graphic_cards
     public partial class MainWindow : Window
     {
         //LOGOVANJE: admin admin123 | guest guest123
-        //VAZNO:              1. U zadatku su koriscene i apsolutne putanje iako su trazene relativne(ima i njih na nekim mestima)
+        //VAZNO:              1. U zadatku su koriscene i apsolutne putanje(uglavnom za .mxl fajlove) iako su trazene relativne(ima i njih na nekim mestima)
         //                    zbog izbegavanja gresaka prilikom pokretanja projekta na razlicitim racunarima. Nadam se da nije problem.
         //                    Negde su cak i ostavljene relativne putanje u komentaru iznad apsolutnih cisto da se vidi implementacija.
         //      Za AddWindow: 2. Ako dodajemo sliku direktno iz Images foldera u projektu ona ce se videti u tabeli

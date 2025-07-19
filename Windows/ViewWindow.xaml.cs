@@ -65,7 +65,7 @@ namespace CMS_gigabyte_graphic_card.Windows
                 MessageBox.Show("An error occurred while loading the RTF file: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
-            string formattedDate = card.DateAdded.ToString("dd-MM-yyyy");
+            string formattedDate = card.DateAdded.ToString("dd.MM.yyyy");
             dateAddedNumberLabel.Content = formattedDate;
         }
 
