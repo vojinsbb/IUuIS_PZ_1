@@ -3,7 +3,7 @@
 ## LOGOVANJE: admin admin123 | guest guest123
 
 ## 📌 Opis zadatka
-###Kreirana aplikacaija koja služi za rukovanje listom grafičkih kartica proizvođača Gigabyte.
+### Kreirana aplikacaija koja služi za rukovanje listom grafičkih kartica proizvođača Gigabyte.
 ----------------------------------------------------------------------------------------------
 Zadatak obuhvata:
 - Login sistem sa predefinisanim korisnicima(admin i guest)
