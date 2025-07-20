@@ -7,7 +7,7 @@
 ----------------------------------------------------------------------------------------------
 Zadatak obuhvata:
 - Login sistem sa predefinisanim korisnicima(admin i guest)
-- Tablearni prikaz opisa i slika grafičkih karata 
+- Tabelarni prikaz opisa i slika grafičkih karata 
 - Mogućnost dodavanja, editovanja i brisanja elemenata iz tabele
 - Pregled sadržaja iz dva ugla(admin i guest)
 ----------------------------------------------------------------------------------------------
