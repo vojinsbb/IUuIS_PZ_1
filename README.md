@@ -13,5 +13,5 @@ Zadatak obuhvata:
 ----------------------------------------------------------------------------------------------
 ## 💡 Korišćene tehnologije i programi:
 - C# / WPF
-- XML / RTF ya skladištenje podataka
+- XML / RTF za skladištenje podataka
 ----------------------------------------------------------------------------------------------
