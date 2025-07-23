@@ -5,7 +5,7 @@
 ## 📌 Opis zadatka
 ### Kreirana aplikacaija koja služi za rukovanje listom grafičkih kartica proizvođača Gigabyte.
 ----------------------------------------------------------------------------------------------
-Zadatak obuhvata:
+#### Zadatak obuhvata:
 - Login sistem sa predefinisanim korisnicima(admin i guest)
 - Tabelarni prikaz opisa i slika grafičkih karata 
 - Mogućnost dodavanja, editovanja i brisanja elemenata iz tabele
